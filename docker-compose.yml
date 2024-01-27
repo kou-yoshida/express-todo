@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  api:
+    image: "node:20-alpine"
+    build: .
+    working_dir: /api # this is the working directory inside the container
+    volumes:
+      - ./:/api # local directory : container directory
+    ports:
+      - "3001:3000" # container port : local port
+    command: "npm run ts-node"
+
+    ## ネットワークを複数切り分けて設定することも可能 @see https://matsuand.github.io/docs.docker.jp.onthefly/compose/networking/#specify-custom-networks
