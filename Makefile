@@ -26,3 +26,12 @@ down:
 
 ps:
 	docker-compose ps
+
+
+
+# コンテナ入る系
+api:
+	docker-compose exec api sh
+
+mysql:
+	docker-compose exec mysql bash
