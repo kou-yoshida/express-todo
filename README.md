@@ -1,5 +1,23 @@
 # express-todo
 
+## モデル定義
+
+### TODO
+
+- id number ID
+- name タスク名 string
+- status ステータス enum('todo','completed','deleted')
+- created_at 作成日時 Date
+- updated_at 更新日時 Date
+- user_id タスクを作成した user_id
+
+### USER
+
+- id ID
+- name ユーザーネーム
+- email メールアドレス
+- password_hash ハッシュ化したパスワード
+
 ## ts-node
 
 開発時に使用する
@@ -14,8 +32,6 @@
 
 ## TODO
 
-- DOCKER 関連の導入
-- DB 接続
 - TODO の実装
 - DB をモックしたテスト？
 - jwt とかを使った認証実装
