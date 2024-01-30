@@ -3,9 +3,12 @@
     "ts-node": "ts-node ./src/server/index.ts",
     "tsc": "tsc",
     "test": "jest --coverage  --forceExit --detectOpenHandles --coverageDirectory=./tests/coverage",
-    "test:parallel": "jest --coverage  "
+    "test:parallel": "jest --coverage",
+    "pull-db": "npx prisma db pull",
+    "push-db": "npx prisma db push"
   },
   "dependencies": {
+    "@prisma/client": "^5.9.0",
     "express": "^4.18.2",
     "jest-junit": "^16.0.0",
     "prisma": "^5.8.1",
