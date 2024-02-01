@@ -26,6 +26,10 @@
 
 ビルドする時に使用する
 
+## curl
+
+post の curl curl -X POST -H "Content-Type: application/json" -d '{"name":"太郎", "age":"30"}' https://xxxxx.net/xxxxxx
+
 ## テスト関連（jest）
 
 - --forceExit --detectOpenHandles -> 単一プロセスで実行し、デバッグしやすくなる
