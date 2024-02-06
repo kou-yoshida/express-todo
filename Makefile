@@ -28,6 +28,9 @@ ps:
 	docker-compose ps
 
 
+# ログ出力
+log:
+	docker-compose logs
 
 # コンテナ入る系
 api:

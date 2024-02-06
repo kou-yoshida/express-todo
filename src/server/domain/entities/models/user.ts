@@ -1,20 +1,17 @@
 import { randomUUID } from "crypto";
 
 export type ModelParams = {
-  name: string;
   email: string;
   id: string;
   password: string;
 };
 
 export type CreationParams = {
-  name: string;
   email: string;
   password: string;
 };
 
 export type ReconstructParams = {
-  name: string;
   email: string;
   id: string;
   password: string;
@@ -22,7 +19,6 @@ export type ReconstructParams = {
 
 export class User {
   public constructor(
-    private _name: string,
     private _email: string,
     private _id: string,
     private _password: string
@@ -35,7 +31,7 @@ export class User {
    */
   static create(params: CreationParams): User {
     const id = randomUUID();
-    return new User(params.name, params.email, id, params.password);
+    return new User(params.email, id, params.password);
   }
 
   /**
@@ -44,7 +40,7 @@ export class User {
    * @returns {User} ユーザー
    */
   static reConstruct(params: ReconstructParams): User {
-    return new User(params.name, params.email, params.id, params.password);
+    return new User(params.email, params.id, params.password);
   }
 
   /**
@@ -52,13 +48,6 @@ export class User {
    */
   public get id(): string {
     return this._id;
-  }
-
-  /**
-   * 名前
-   */
-  public get name(): string {
-    return this._name;
   }
 
   /**
