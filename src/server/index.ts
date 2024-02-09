@@ -5,7 +5,6 @@ import { todosRouter } from "./presentation/routers/todos";
 import { authRouter } from "./presentation/routers/auth";
 
 const app = express();
-const prisma = new PrismaClient();
 
 app.use(express.json());
 

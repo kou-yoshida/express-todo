@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/signup", signUpController.index);
 
 /** ログイン */
-router.post("/login", () => {});
+router.post("/login", loginController.index);
 
 /** ログアウト */
 router.post("/logout", () => {});

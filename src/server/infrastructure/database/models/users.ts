@@ -17,4 +17,16 @@ export class Users {
     const prisma = new PrismaClient();
     return prisma.users.findMany();
   }
+
+  /**
+   * 1件取得（emailで検索）
+   */
+  public static findByEmail(email: string) {
+    const prisma = new PrismaClient();
+    return prisma.users.findFirst({
+      where: {
+        email: email,
+      },
+    });
+  }
 }

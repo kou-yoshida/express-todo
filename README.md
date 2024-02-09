@@ -36,9 +36,14 @@ post の curl curl -X POST -H "Content-Type: application/json" -d '{"name":"太�
 
 ## TODO
 
-- TODO の実装
+- signUp 済
+- login
+- logout
+- createTodo
+- updateTodo
+- deleteTodo
+- getTodos
 - DB をモックしたテスト？
-- jwt とかを使った認証実装
 
 ## メモ
 
