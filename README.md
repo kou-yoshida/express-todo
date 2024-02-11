@@ -37,8 +37,8 @@ post の curl curl -X POST -H "Content-Type: application/json" -d '{"name":"太�
 ## TODO
 
 - signUp 済
-- login
-- logout
+- login 済
+- logout session 管理をいつかやる
 - createTodo
 - updateTodo
 - deleteTodo

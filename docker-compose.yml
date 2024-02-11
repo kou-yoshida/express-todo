@@ -11,7 +11,7 @@ services:
       - /api/node_modules # anonymous volume
     ports:
       - "3000:3000" # container port : local port
-    command: sh -c "npm install && npx prisma migrate dev && npm run ts-node"
+    command: sh -c "npm install && npm run ts-node"
 
     ## ネットワークを複数切り分けて設定することも可能 @see https://matsuand.github.io/docs.docker.jp.onthefly/compose/networking/#specify-custom-networks
 

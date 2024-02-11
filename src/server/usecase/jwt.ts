@@ -20,3 +20,9 @@ export const createJwt = (id: string): string => {
 export const verifyJwt = (token: string) => {
   return jwt.verify(token, key);
 };
+
+/**
+ * TODO:ログアウト処理 いつかやりたい
+ * セッションで管理する必要がある
+ *
+ */

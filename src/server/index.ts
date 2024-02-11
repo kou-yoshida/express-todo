@@ -3,10 +3,20 @@ import { PrismaClient } from "@prisma/client";
 import { usersRouter } from "./presentation/routers/users";
 import { todosRouter } from "./presentation/routers/todos";
 import { authRouter } from "./presentation/routers/auth";
+import * as authMiddleware from "./middlewares/auth";
+
+declare global {
+  namespace Express {
+    export interface Request {
+      userId: string;
+    }
+  }
+}
 
 const app = express();
 
 app.use(express.json());
+app.use("/todos", authMiddleware.index);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
