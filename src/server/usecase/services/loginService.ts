@@ -1,8 +1,8 @@
 import { UserDto } from "../../domain/dto/userDto";
 import { LoginRepository } from "../../domain/repositories/LoginRepository";
 import { ErrorMessage } from "../../errors/ErrorMessage";
-import { NotExistError } from "../../errors/base/notExistError";
-import { UnauthorizedError } from "../../errors/base/unauthorizedError";
+import { NotExistError } from "../../errors/notExistError";
+import { UnauthorizedError } from "../../errors/unauthorizedError";
 import { createJwt } from "../jwt";
 import { comparePassword } from "../passwordHash";
 

@@ -1,7 +1,7 @@
 import { User } from "../../domain/entities/models/user";
 import { LoginRepository } from "../../domain/repositories/LoginRepository";
 import { ErrorMessage } from "../../errors/ErrorMessage";
-import { NotExistError } from "../../errors/base/notExistError";
+import { NotExistError } from "../../errors/notExistError";
 import { Users } from "../database/models/users";
 
 export class LoginRepositoryImpl implements LoginRepository {

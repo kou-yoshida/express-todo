@@ -1,4 +1,4 @@
-import { BaseApiError } from "./baseApiError";
+import { BaseApiError } from "./base/baseApiError";
 
 export class NotExistError extends BaseApiError {
   constructor(message: string) {

@@ -1,5 +1,5 @@
 import express from "express";
-import { UnauthorizedError } from "../errors/base/unauthorizedError";
+import { UnauthorizedError } from "../errors/unauthorizedError";
 import { verifyJwt } from "../usecase/jwt";
 import { JwtPayload } from "jsonwebtoken";
 

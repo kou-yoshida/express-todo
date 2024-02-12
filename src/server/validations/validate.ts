@@ -1,6 +1,6 @@
 import { AnyZodObject, ZodError } from "zod";
 import express from "express";
-import { ValidationError } from "../errors/base/validationError";
+import { ValidationError } from "../errors/validationError";
 
 export const validate =
   (schema: AnyZodObject) =>
@@ -15,7 +15,16 @@ export const validate =
       return;
     } catch (error) {
       if (error instanceof ZodError) {
-        next(new ValidationError(error.message));
+        const _error = error.flatten();
+        next(
+          new ValidationError(
+            JSON.stringify(
+              Object.keys(_error.fieldErrors)
+                .map((key) => `${key}:${_error.fieldErrors[key]}`)
+                .join(",")
+            )
+          )
+        );
       }
     }
   };
