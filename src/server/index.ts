@@ -1,54 +1,56 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
+import { usersRouter } from "./presentation/routers/users";
+import { todosRouter } from "./presentation/routers/todos";
+import { authRouter } from "./presentation/routers/auth";
+import * as authMiddleware from "./middlewares/auth";
+
+declare global {
+  namespace Express {
+    export interface Request {
+      userId: string;
+    }
+  }
+}
 
 const app = express();
-const prisma = new PrismaClient();
+
+app.use(express.json());
+app.use("/todos", authMiddleware.index);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/users", async (req, res) => {
-  const name = "test";
-  const email = "test-email";
-  const passwordHash = "test-password";
+/**
+ * User関連のroute
+ */
+app.use("/users", usersRouter);
 
-  await prisma.users.create({
-    data: {
-      name,
-      email,
-      password_hash: passwordHash,
-    },
-  });
+/**
+ * Todo関連のroute
+ */
+app.use("/todos", todosRouter);
 
-  const result = await prisma.users.findMany();
-  res.send(result);
-});
+/**
+ * 認証関連のroute
+ */
+app.use("/auth", authRouter);
 
-app.use("/user/1", (req, res) => {
-  res.send("user1");
-});
-
-// 全てのtodoを取得する
-app.get("/todos", async (req, res) => {
-  const todos = await prisma.todos.findMany();
-  res.send(todos);
-});
-
-// todoを作成する
-app.post("/todos", async (req, res) => {
-  // const { name, email, passwordHash } = req.body;
-  // const name = "test";
-  // const email = "test-email";
-  // const passwordHash = "test-password";
-  // prisma.todos.create({
-  //   data: {
-  //     name,
-  //     email,
-  //     password_hash: passwordHash,
-  //   },
-  // });
-});
+// Error handler
+app.use(
+  (
+    err: any,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    console.log(err);
+    res
+      .status(err.statusCode || 500)
+      .json({ message: JSON.parse(err.message) });
+  }
+);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");

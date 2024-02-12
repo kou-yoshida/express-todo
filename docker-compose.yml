@@ -2,19 +2,22 @@ version: "3.3"
 services:
   api:
     container_name: api_container
+    hostname: api_container
     image: "node:20-alpine"
     build: .
     working_dir: /api # this is the working directory inside the container
     volumes:
       - ./:/api # local directory : container directory
+      - /api/node_modules # anonymous volume
     ports:
-      - "3001:3000" # container port : local port
-    command: "npm run ts-node"
+      - "3000:3000" # container port : local port
+    command: sh -c "npm install && npm run ts-node"
 
     ## ネットワークを複数切り分けて設定することも可能 @see https://matsuand.github.io/docs.docker.jp.onthefly/compose/networking/#specify-custom-networks
 
   mysql:
     container_name: mysql_container
+    hostname: mysql
     image: mysql:8.0.36
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
 }
 
@@ -9,17 +9,16 @@ datasource db {
 }
 
 model Users {
-  id            Int    @id @default(autoincrement())
+  id            String @id @db.VarChar(255)
   email         String @unique(map: "email_UNIQUE") @db.VarChar(255)
   password_hash String @db.VarChar(255)
-  name          String @db.VarChar(45)
 }
 
 model todos {
   id         Int          @id @unique(map: "id_UNIQUE") @default(autoincrement())
   status     todos_status
   name       String       @db.VarChar(45)
-  user_id    Int
+  user_id    String       @db.VarChar(255)
   created_at DateTime     @db.Date
   updated_at DateTime?    @db.Date
 }

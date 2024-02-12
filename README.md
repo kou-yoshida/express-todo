@@ -26,15 +26,24 @@
 
 ビルドする時に使用する
 
+## curl
+
+post の curl curl -X POST -H "Content-Type: application/json" -d '{"name":"太郎", "age":"30"}' https://xxxxx.net/xxxxxx
+
 ## テスト関連（jest）
 
 - --forceExit --detectOpenHandles -> 単一プロセスで実行し、デバッグしやすくなる
 
 ## TODO
 
-- TODO の実装
+- signUp 済
+- login 済
+- logout session 管理をいつかやる
+- createTodo 済
+- updateTodo
+- deleteTodo
+- getTodos
 - DB をモックしたテスト？
-- jwt とかを使った認証実装
 
 ## メモ
 
