@@ -25,6 +25,7 @@ export class Todos {
     return await prisma.todos.update({
       where: {
         id: params.id,
+        user_id: params.userId,
       },
       data: {
         name: params.name,
@@ -49,11 +50,12 @@ export class Todos {
   /**
    * IDで取得
    */
-  public static async findById(id: number) {
+  public static async findById(id: number, userId: string) {
     const prisma = new PrismaClient();
     return await prisma.todos.findFirst({
       where: {
         id: id,
+        user_id: userId,
       },
     });
   }
