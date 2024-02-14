@@ -59,4 +59,17 @@ export class Todos {
       },
     });
   }
+
+  /**
+   * 削除
+   */
+  public static async delete(id: number, userId: string) {
+    const prisma = new PrismaClient();
+    return await prisma.todos.delete({
+      where: {
+        id: id,
+        user_id: userId,
+      },
+    });
+  }
 }

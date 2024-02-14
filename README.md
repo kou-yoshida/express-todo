@@ -39,10 +39,11 @@ post の curl curl -X POST -H "Content-Type: application/json" -d '{"name":"太�
 - signUp 済
 - login 済
 - logout session 管理をいつかやる
+- params のバリデーション 済
 - createTodo 済
-- updateTodo
-- deleteTodo
-- getTodos
+- updateTodo 済
+- deleteTodo 済
+- getTodos 済
 - DB をモックしたテスト？
 
 ## メモ
