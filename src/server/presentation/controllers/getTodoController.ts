@@ -10,9 +10,12 @@ export const index = async (
   try {
     const service = new GetTodoService(new GetTodoRepositoryImpl());
 
-    const todo = await service.execute(req.body.id);
+    const todo = await service.execute({
+      userId: req.body.id,
+      id: Number(req.params.id),
+    });
 
-    return todo;
+    res.status(200).json(todo);
   } catch (error) {
     next(error);
   }

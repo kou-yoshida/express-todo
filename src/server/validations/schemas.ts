@@ -5,7 +5,7 @@ import { TODO_STATUS } from "../domain/entities/models/todo";
  * todo更新時のparamsスキーマ
  */
 export const todoUpdateSchema = z.object({
-  id: z.string(),
+  id: z.string().transform((value) => Number(value)),
   userId: z.string(),
   status: z.enum([
     TODO_STATUS.Completed,
@@ -29,7 +29,7 @@ export const todoCreateSchema = z.object({
  * todo削除時のparamsスキーマ
  */
 export const todoDeleteSchema = z.object({
-  id: z.string(),
+  id: z.string().transform((value) => Number(value)),
   userId: z.string(),
 });
 
@@ -45,7 +45,7 @@ export const todoGetListSchema = z.object({
  */
 export const todoGetSchema = z.object({
   userId: z.string(),
-  id: z.number(),
+  id: z.string().transform((value) => Number(value)),
 });
 
 /**

@@ -1,6 +1,6 @@
 import { Todo } from "../../domain/entities/models/todo";
 import { GetTodosRepository } from "../../domain/repositories/GetTodosRepository";
-import { Todos } from "../database/models/todos";
+import { Todo as TodoDB } from "../database/models/todos";
 
 export class GetTodosRepositoryImpl implements GetTodosRepository {
   constructor() {}
@@ -9,16 +9,16 @@ export class GetTodosRepositoryImpl implements GetTodosRepository {
    * userIdからTodo一覧を取得する
    */
   async execute(userId: string) {
-    const result = await Todos.findByUserId(userId);
+    const result = await TodoDB.findByUserId(userId);
 
     return result.map((todo) => {
       return Todo.reConstruct({
         id: todo.id,
         status: todo.status,
         name: todo.name,
-        createdAt: todo.created_at,
-        userId: todo.user_id,
-        updatedAt: todo.updated_at || undefined,
+        createdAt: todo.createdAt,
+        userId: todo.userId,
+        updatedAt: todo.updatedAt || undefined,
       });
     });
   }

@@ -8,19 +8,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   id            String @id @db.VarChar(255)
   email         String @unique(map: "email_UNIQUE") @db.VarChar(255)
   password_hash String @db.VarChar(255)
+  todo          Todo[]
 }
 
-model todos {
-  id         Int          @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  status     todos_status
-  name       String       @db.VarChar(45)
-  user_id    String       @db.VarChar(255)
-  created_at DateTime     @db.Date
-  updated_at DateTime?    @db.Date
+model Todo {
+  id        Int          @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  status    todos_status
+  name      String       @db.VarChar(45)
+  user      User         @relation(fields: [userId], references: [id])
+  userId    String       @db.VarChar(255)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime?    @updatedAt
 }
 
 enum todos_status {
