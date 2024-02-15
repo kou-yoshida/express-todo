@@ -7,6 +7,6 @@ export class GetTodoService {
   }
 
   async execute({ userId, id }: { userId: string; id: number }) {
-    await this._getTodoRepository.execute(userId, id);
+    return await this._getTodoRepository.execute(userId, id);
   }
 }

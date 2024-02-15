@@ -46,9 +46,13 @@ app.use(
     next: express.NextFunction
   ) => {
     console.log(err);
-    res
-      .status(err.statusCode || 500)
-      .json({ message: JSON.parse(err.message) });
+    try {
+      res
+        .status(err.statusCode || 500)
+        .json({ message: JSON.parse(err.message) });
+    } catch {
+      res.status(err.statusCode || 500).json({ message: err.message });
+    }
   }
 );
 

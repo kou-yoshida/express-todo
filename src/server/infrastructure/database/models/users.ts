@@ -1,11 +1,11 @@
 import { PrismaClient, Prisma } from "@prisma/client";
-export class Users {
+export class User {
   /**
    * 作成
    */
-  public static async create(params: Prisma.UsersCreateArgs["data"]) {
+  public static async create(params: Prisma.UserCreateArgs["data"]) {
     const prisma = new PrismaClient();
-    return await prisma.users.create({
+    return await prisma.user.create({
       data: params,
     });
   }
@@ -15,7 +15,7 @@ export class Users {
    */
   public static findAll() {
     const prisma = new PrismaClient();
-    return prisma.users.findMany();
+    return prisma.user.findMany();
   }
 
   /**
@@ -23,7 +23,7 @@ export class Users {
    */
   public static findByEmail(email: string) {
     const prisma = new PrismaClient();
-    return prisma.users.findFirst({
+    return prisma.user.findFirst({
       where: {
         email: email,
       },

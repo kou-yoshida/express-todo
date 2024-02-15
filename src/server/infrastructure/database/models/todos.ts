@@ -1,18 +1,18 @@
 import { PrismaClient } from "@prisma/client";
-import { Todo } from "../../../domain/entities/models/todo";
+import { Todo as TodoEntity } from "../../../domain/entities/models/todo";
 
-export class Todos {
+export class Todo {
   /**
    * 作成
    */
-  public static async create(params: Todo) {
+  public static async create(params: TodoEntity) {
     const prisma = new PrismaClient();
-    return await prisma.todos.create({
+    return await prisma.todo.create({
       data: {
         name: params.name,
         status: params.status,
-        created_at: params.createdAt,
-        user_id: params.userId,
+        createdAt: params.createdAt,
+        userId: params.userId,
       },
     });
   }
@@ -20,17 +20,17 @@ export class Todos {
   /**
    * 更新
    */
-  public static async update(params: Todo) {
+  public static async update(params: TodoEntity) {
     const prisma = new PrismaClient();
-    return await prisma.todos.update({
+    return await prisma.todo.update({
       where: {
         id: params.id,
-        user_id: params.userId,
+        userId: params.userId,
       },
       data: {
         name: params.name,
         status: params.status,
-        updated_at: params.updatedAt,
+        updatedAt: params.updatedAt,
       },
     });
   }
@@ -40,9 +40,9 @@ export class Todos {
    */
   public static async findByUserId(userId: string) {
     const prisma = new PrismaClient();
-    return await prisma.todos.findMany({
+    return await prisma.todo.findMany({
       where: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -52,10 +52,10 @@ export class Todos {
    */
   public static async findById(id: number, userId: string) {
     const prisma = new PrismaClient();
-    return await prisma.todos.findFirst({
+    return await prisma.todo.findFirst({
       where: {
         id: id,
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -65,10 +65,10 @@ export class Todos {
    */
   public static async delete(id: number, userId: string) {
     const prisma = new PrismaClient();
-    return await prisma.todos.delete({
+    return await prisma.todo.delete({
       where: {
         id: id,
-        user_id: userId,
+        userId: userId,
       },
     });
   }
