@@ -1,4 +1,6 @@
 import express from "express";
+import { BadRequestError } from "../../errors/badRequestError";
+import { ErrorMessage } from "../../errors/ErrorMessage";
 interface RequestBody {
   userId: string;
   id: number;
@@ -6,9 +8,15 @@ interface RequestBody {
 export class DeleteTodoRequest {
   private _requestBdy: RequestBody;
   constructor(req: express.Request) {
+    const userId = req.body.userId;
+    const id = Number(req.params.id);
+
+    if (!userId || isNaN(id))
+      throw new BadRequestError(ErrorMessage.BAD_REQUEST);
+
     this._requestBdy = {
-      userId: req.body.userId,
-      id: Number(req.params.id),
+      userId,
+      id,
     };
   }
 
